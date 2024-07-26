@@ -1,0 +1,42 @@
+.header {
+    background-color: #fff;
+    padding: 0px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.header_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header.header h1 {
+    font-size: 1.8em;
+    color: #000;
+}
+
+.header_text {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.header_actions {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Adiciona espaço entre os itens de ação no cabeçalho */
+    align-self: flex-end;
+    margin-bottom: 30px;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #dcdcdc;
+    margin: 16px 0;
+}

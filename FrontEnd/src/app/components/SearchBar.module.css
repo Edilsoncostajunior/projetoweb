@@ -1,0 +1,19 @@
+.search_bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(249, 251, 255);
+    background-color: #f9fbff;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.search_bar_input {
+    margin-left: 5px;
+    padding: 0.25rem; /* Reduz o padding para diminuir a altura */
+    height: 1.5rem; /* Define uma altura específica menor */
+    width: 100%;
+    border: none;
+    background-color: rgb(249, 251, 255);
+    border-radius: 10px;
+    outline: none; /* Remove a borda preta ao focar */
+}

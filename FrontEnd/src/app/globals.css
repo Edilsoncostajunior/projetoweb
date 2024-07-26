@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+      --background-start-rgb: rgba(57, 57, 57, 0.9);
+      --background-end-rgb:  0,0,0;
+      --callout-container-rgb: rgba(128, 128, 128, 0.578);
+
+      --var-bg: #fff;
+
+      --start-left-bg-gradient: var(--linear, linear-gradient(180deg, rgb(200, 99, 122) 0%, rgba(193, 99, 122, 0.95) 77.08%, rgba(193, 99, 122, 0.96) 99.92%, rgb(193, 99, 122) 99.93%, #C1637A 99.94%, #C1637A 99.95%, rgba(200, 188, 246, 0.00) 99.96%));
+      --title--login: #333;
+      --white-text: white;
+      --input-bg-color: white;
+      --bg-button: #c1637a;
+      --placeholder-color: #3333334d;
+
+
+      --callout-log-rgb:  rgba(65, 63, 63, 0.578);
+      --background-log-rgb: rgb(46, 44, 44);
+
+
+      --log-gradient: white;
+
+      --container-gradient:rgb(0, 64, 128);
+
+      --Cor-primaria: 0, 64, 128;
+      --Cor-secundaria: 0, 166, 232;
+      --Cor-ternaria: 255, 199, 44;
+      --Cor-de-fundo-primaria: 255, 255, 255;
+      --Cor-de-fundo-secundaria: 242, 242, 242;
+      --Cor-do-texto: 51, 51, 51;
+
+      --shadow:
+          0 23px 0 rgb(0 , 0, 0, 0.1)
+          0 49px 0 rgb(0 , 0, 0, 0.06)
+
+      --logo-height: 100px;
+      --header-height: 100px;
+      --aside-width: 225px;
+      --footer-height: 40px;
+      --menu-top-height: 70px;
+
+  }
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--start-left-bg-gradient);
+}
+
+
+.app{
+  margin: 1px;
+  display: grid;
+  grid-template-columns: var(--aside-width) 1fr ;
+  grid-template-rows: var(--header-height) 1fr var(--footer-height);
+  grid-template-areas: "menu content" "menu content" "menu footer";
+  background-color: var(--Cor-secundaria);
+  height: 100vh;
+}
+
+
+aside.logo{
+  grid-area: logo;
+}
+
+header.header{
+  grid-area: header;
+}
+
+aside.menu-area{
+  grid-area: menu;
+
+}
+
+main.content{
+  grid-area: content;
+}
+
+footer.footer{
+  grid-area: footer;
+
+}
+

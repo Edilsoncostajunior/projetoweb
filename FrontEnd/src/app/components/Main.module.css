@@ -1,0 +1,44 @@
+.local_div {
+    background-color: #fff;
+    box-shadow: 0px 0px 15px #0004;
+    margin-top: 16px;
+    margin-left: 16px; /* Adiciona margem à esquerda */
+    margin-right: 16px; /* Adiciona margem à direita */
+    border-radius: 15px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Ajustar conforme necessário para ocupar mais da tela */
+    max-width: calc(100% - 32px); /* Ajusta a largura para considerar as margens */
+}
+
+.main_content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    background-color: #f9f9f9;
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.header_actions {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Adiciona espaço entre os itens de ação no cabeçalho */
+}
+
+
+
+.content {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 15px;
+    overflow-y: auto;
+    flex: 1;
+}

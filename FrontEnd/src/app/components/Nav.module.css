@@ -1,0 +1,46 @@
+aside.menu_area {
+    background-color: #e894a7;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.12), 2px 0 15px rgba(0, 0, 0, 0.09);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomMenu {
+    margin-top: auto; /* Empurra o nav para a parte inferior */
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+    padding: 15px;
+}
+
+
+.menu a:hover {
+    background: linear-gradient(135deg, #e67b94 0%, rgb(200, 99, 122) 100%);
+}
+
+@media (max-width: 768px) {
+    .menu {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .menu a {
+        display: inline;
+        padding: 10px;
+        margin: 0px;
+    }
+    .menu {
+        height: 100%;
+        justify-content: space-around;
+    }
+}

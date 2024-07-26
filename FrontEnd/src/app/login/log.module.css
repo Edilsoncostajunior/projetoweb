@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Knewave&family=Nunito:wght@400;600;700&display=swap');
+
+.login {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--var-bg);
+}
+
+.left_content {
+    width: 65%;
+    height: 100%;
+    background: var(--start-left-bg-gradient);
+    position: relative;
+}
+
+
+.group_2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.group_1{
+    width: 355px;
+    height: 87px;
+}
+
+.ellipse_1,
+.ellipse_2 {
+    width: 557px;
+    height: 557px;
+    border-radius: 557px;
+    border: 1px solid #FFF;
+    position: absolute;
+}
+
+
+.ellipse_1 {
+    bottom: -300px;
+    left: -70px;
+}
+
+.ellipse_2 {
+    bottom: -270px;
+    left: -160px;
+}
+
+.content {
+    width: 355px;
+    height: 87px;
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.frame_4{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    color: var(--white-text, --title--login);
+    font-size: 70px;
+}
+
+.frame_3{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 23px;
+    color: var(--white-text, --title--login);
+    font-size: 25px;
+}
+
+
+.right_content {
+    position: relative;
+    width: 35%;
+    height: 100%;
+    background: var(--var-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap_title{
+    width: 231px;
+    padding: 18px;
+    padding-left: 0px;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+.title_login{
+    color: var(--title--login);
+    font-family: Poppins;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.title_subLogin{
+    color: var(--title--login);
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form_input {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.wrap_input{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px;
+    border-radius: 30px;
+    flex: 1;
+    border-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    background: var(--input-bg-color);
+    color: var(--input-bg-color);
+    border: 1px solid #EEE;
+
+    }
+
+.input{
+    outline: none;
+    border-radius: 30px;
+    background: var(--input-bg-color);
+    color: #0c0c0c ;
+}
+
+.input::placeholder{
+    color: var(--placeholder-color);
+    background-color: none;
+}
+
+
+.wrap_button{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px;
+    border-radius: 30px;
+    border-width: 1px;
+    background: var(--bg-button);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+}
+
+.esqueci_minha_senha{
+    opacity: 0.7;
+    color: var(--title--login);
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.decor{
+    width: 24px;
+    height: 24px;
+    fill: var(--placeholder-color);
+}
+
+.wrap_Theme_btn {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    justify-content: space-between;
+    display: flex;
+  }
