@@ -25,7 +25,7 @@ app.use("/patient", patientRouter);
 
 
 
-db.sync({ force: true })
+db.sync({ alter: true })
   .then(() => {
     console.log(`Banco de dados conectado: ${process.env.DB_NAME}`);
   })

@@ -1,4 +1,4 @@
-import z from '../models/Patient.js';
+import Patient from '../models/Patient.js';
 import getToken from "../utils/jwt/get-token.js";
 import getNurseByToken from '../utils/jwt/get-nurse-by-token.js';
 
@@ -16,6 +16,20 @@ class PatientController {
       res.status(500).json({ error: 'Erro ao buscar pacientes: ' + error.message });
     }
   }
+
+  // Listar um paciente de uma enfermeira
+  async getPatient(req, res) {
+
+    const id = req.params.id;
+
+    try {
+      const patient = await Patient.findByPk(id);
+      res.status(200).json(patient);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao buscar pacientes: ' + error.message });
+    }
+  }
+
   async deletePatient(req, res) {
     try {
       // Obtém o token da requisição
@@ -23,7 +37,7 @@ class PatientController {
       const nurse = await getNurseByToken(token);
 
       // Obtém o ID do paciente
-      const { id } = req.params;
+      const id = req.params.id;
 
       // Verifica se o paciente existe e se pertence à enfermeira
       const patient = await Patient.findOne({ where: { id, nurseId: nurse.id } });
@@ -38,6 +52,7 @@ class PatientController {
       res.status(500).json({ error: "Erro ao excluir paciente." });
     }
   }
+
 
   async updatePatient(req, res) {
     try {
@@ -78,16 +93,6 @@ class PatientController {
     // Verificar campos obrigatórios
     if (!name || !email || !phone || !paridade || !idadeGestacional || !dataUltimaMenstruacao || !cpf) {
       return sendError(res, "Todos os dados são obrigatórios!");
-    }
-
-    // Validar formato de email
-    if (!validateEmail(email)) {
-      return res.status(400).json({ error: "Formato de email inválido" });
-    }
-
-    // Validar formato de CPF
-    if (!validateCPF(cpf)) {
-      return res.status(400).json({ error: "Formato de CPF inválido" });
     }
 
     // Verificar se o email ou CPF já existe no banco

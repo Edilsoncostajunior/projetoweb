@@ -9,14 +9,16 @@ class ConsultaController {
   async addConsulta(req, res) {
     const token = getToken(req);
     const nurse = await getNurseByToken(token);
-    const { anotacao, dataConsulta, patientId } = req.body;
+    const { anotacao, dataConsulta } = req.body;
 
-    if (!anotacao || !dataConsulta || !patientId) {
+    const id = req.params.id;
+
+    if (!anotacao || !dataConsulta) {
       return sendError(res, "Todos os campos são obrigatórios!");
     }
 
     try {
-      const patient = await Patient.findOne({ where: { id: patientId, nurseId: nurse.id } });
+      const patient = await Patient.findOne({ where: { id: id, nurseId: nurse.id } });
       if (!patient) {
         return res.status(404).json({ error: 'Paciente não encontrado ou não associado à enfermeira' });
       }
@@ -25,7 +27,7 @@ class ConsultaController {
         anotacao,
         dataConsulta,
         nurseId: nurse.id,
-        patientId
+        patientId: id
       });
       res.status(201).json(consulta);
     } catch (error) {
@@ -41,7 +43,7 @@ class ConsultaController {
     try {
       const consultas = await Consulta.findAll({
         where: { nurseId: nurse.id },
-        include: { model: Patient, attributes: ['nome', 'email'] }  // Inclui os dados do paciente
+        include: { model: Patient, attributes: ['name', 'email'] }  // Inclui os dados do paciente
       });
       res.status(200).json(consultas);
     } catch (error) {
@@ -53,15 +55,15 @@ class ConsultaController {
   async getConsultasByPatient(req, res) {
     const token = getToken(req);
     const nurse = await getNurseByToken(token);
-    const { patientId } = req.params;
+    const id = req.params.id;
 
     try {
-      const patient = await Patient.findOne({ where: { id: patientId, nurseId: nurse.id } });
+      const patient = await Patient.findOne({ where: { id: id, nurseId: nurse.id } });
       if (!patient) {
         return res.status(404).json({ error: 'Paciente não encontrado ou não associado à enfermeira' });
       }
 
-      const consultas = await Consulta.findAll({ where: { patientId } });
+      const consultas = await Consulta.findAll({ where: { patientId: id } });
       res.status(200).json(consultas);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao buscar consultas: ' + error.message });

@@ -32,9 +32,13 @@ const Nurse = db.define('nurse', {
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
   coren: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
