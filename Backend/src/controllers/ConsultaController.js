@@ -37,8 +37,10 @@ class ConsultaController {
 
   // Retornar todas as consultas de todos os pacientes do enfermeiro logado
   async getAllConsultasByNurse(req, res) {
+
     const token = getToken(req);
     const nurse = await getNurseByToken(token);
+    const consultaId = req.params.consultaId;
 
     try {
       const consultas = await Consulta.findAll({
@@ -69,6 +71,32 @@ class ConsultaController {
       res.status(500).json({ error: 'Erro ao buscar consultas: ' + error.message });
     }
   }
+
+
+  // Função para deletar uma consulta específica
+  async deleteConsulta(req, res) {
+    const token = getToken(req);
+    const nurse = await getNurseByToken(token);
+    const consultaId = req.params.consultaId;
+
+    try {
+      // Verifica se a consulta pertence ao enfermeiro logado
+      const consulta = await Consulta.findOne({
+        where: { id: consultaId, nurseId: nurse.id }
+      });
+
+      if (!consulta) {
+        return res.status(404).json({ error: 'Consulta não encontrada ou não associada à enfermeira' });
+      }
+
+      // Deleta a consulta
+      await consulta.destroy();
+      res.status(200).json({ message: 'Consulta deletada com sucesso' });
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao deletar consulta: ' + error.message });
+    }
+  }
+
 }
 
 async function sendError(res, message) {

@@ -12,7 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static('public'))
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+app.use(cors({credentials: true, origin: 'http://localhost:3000'})) ///Front
 
 
 Nurse.associate({ Patient, Consulta });
@@ -34,6 +34,6 @@ db.sync({ alter: true })
   });
 
 
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
+app.listen(5000, () => {
+  console.log('Servidor rodando na porta 5000');
 });

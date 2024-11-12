@@ -12,8 +12,8 @@ const Header = (props) => {
                     <p className='text-gray-500 ml-0'>{props.subtitle}</p>
                 </div>
                 <div className={style.header_actions}>
-                    <props.SearchBar />
-                    <props.AddButton />
+                    {props.SearchBar && <props.SearchBar />}
+                    {props.AddButton && <props.AddButton route ={`${props.addButtonRoute}`} />}
                 </div>
             </div>
             <hr className={style.divider} />
