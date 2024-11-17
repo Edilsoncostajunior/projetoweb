@@ -62,7 +62,7 @@ class PatientController {
 
       // Obtém o ID do paciente e os novos dados a partir do body da requisição
       const { id } = req.params;
-      const { name, email, phone, paridade, idadeGestacional, dataUltimaMenstruacao } = req.body;
+      const { name, email, phone, paridade, idadeGestacional, dataUltimaMenstruacao, birthDate } = req.body;
 
       // Verifica se o paciente existe
       const patient = await Patient.findOne({ where: { id, nurseId: nurse.id } });
@@ -77,6 +77,7 @@ class PatientController {
       patient.paridade = paridade || patient.paridade;
       patient.idadeGestacional = idadeGestacional || patient.idadeGestacional;
       patient.dataUltimaMenstruacao = dataUltimaMenstruacao || patient.dataUltimaMenstruacao;
+      patient.birthDate = birthDate || patient.birthDate
 
       await patient.save();
       res.status(200).json({ message: "Paciente atualizado com sucesso.", patient });
@@ -88,10 +89,10 @@ class PatientController {
   async addPatient(req, res) {
     const token = getToken(req);
     const nurse = await getNurseByToken(token);
-    const { name, email, phone, paridade, idadeGestacional, dataUltimaMenstruacao, cpf } = req.body;
+    const { name, email, phone, paridade, idadeGestacional, dataUltimaMenstruacao, cpf, birthDate } = req.body;
 
     // Verificar campos obrigatórios
-    if (!name || !email || !phone || !paridade || !idadeGestacional || !dataUltimaMenstruacao || !cpf) {
+    if (!name ||  !dataUltimaMenstruacao ) {
       return sendError(res, "Todos os dados são obrigatórios!");
     }
 
@@ -116,6 +117,7 @@ class PatientController {
         idadeGestacional,
         dataUltimaMenstruacao,
         cpf,
+        birthDate,
         nurseId: nurse.id
       });
       res.status(201).json(patient);

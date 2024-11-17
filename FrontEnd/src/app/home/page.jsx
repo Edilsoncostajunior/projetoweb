@@ -15,7 +15,7 @@ const Home = () => {
     <div className="app">
       <Nav />
       <Main>
-        <Header title="Gestantes cadastradas" subtitle="Lista de Gestantes" icon="users" addButtonRoute="/addpatient" SearchBar={SearchBar} AddButton={AddButton}  />
+        <Header title="Gestantes cadastradas" subtitle="Lista de Gestantes" icon="users" text="+ Add User" addButtonRoute="/addpatient" SearchBar={SearchBar} AddButton={AddButton}  />
         <TabelaGestantes apiUrl={"http://localhost:5000/patient/patients"} />
       </Main>
     </div>

@@ -1,7 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function PatientRow({ patient, onDelete }) {
   const [showConfirm, setShowConfirm] = useState(false);
+  const [dueDate, setDueDate] = useState('');
+  const [gestationalAge, setgestationalAge] = useState('');
+
+  const calculateGestationalAge = (dataUltimaMenstruacao) => {
+    const dumDate = new Date(dataUltimaMenstruacao);
+    const currentDate = new Date();
+    const differenceInMs = currentDate - dumDate;
+    const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(differenceInDays / 7);
+    const days = differenceInDays % 7;
+    return `${weeks} semanas e ${days} dias`;
+  };
+
+  const calculateDueDate = (dataUltimaMenstruacao) => {
+    const dumDate = new Date(dataUltimaMenstruacao);
+    const dueDate = new Date(dumDate.setDate(dumDate.getDate() + 280));
+    return dueDate.toLocaleDateString('pt-BR');
+  };
+
+  useEffect(() => {
+    if (patient.dataUltimaMenstruacao) {
+      const gestationalAge = calculateGestationalAge(patient.dataUltimaMenstruacao);
+      const dueDate = calculateDueDate(patient.dataUltimaMenstruacao);
+      setDueDate(dueDate);
+      setgestationalAge(gestationalAge);
+    }
+  }, [patient.dataUltimaMenstruacao]);
 
   const handleDeleteClick = () => {
     setShowConfirm(true);
@@ -9,10 +36,17 @@ export default function PatientRow({ patient, onDelete }) {
 
   const confirmDelete = async () => {
     try {
+      const token = localStorage.getItem('token');
+
       await fetch(`http://localhost:5000/patient/patients/${patient.id}`, {
         method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${JSON.parse(token)}`,
+        },
       });
-      onDelete(patient.id); // Remove o paciente da lista após deleção
+
+      onDelete(patient.id); // Remove o paciente da lista sem recarregar a página
       setShowConfirm(false);
     } catch (error) {
       console.error('Erro ao deletar paciente:', error);
@@ -22,19 +56,17 @@ export default function PatientRow({ patient, onDelete }) {
   return (
     <tr className="border-b hover:bg-gray-50">
       <td className="p-4">{patient.name}</td>
-      <td className="p-4">{patient.gestationalAge}</td>
+      <td className="p-4">{gestationalAge}</td>
       <td className="p-4">{patient.phone}</td>
       <td className="p-4">{patient.email}</td>
-      <td className="p-4">{patient.dueDate}</td>
+      <td className="p-4">{dueDate}</td>
       <td className="p-4 flex space-x-4">
-        {/* Botão Editar */}
         <a
           href={`/patient/${patient.id}`}
           className="text-blue-600 hover:underline"
         >
           Editar
         </a>
-        {/* Botão Deletar */}
         <button
           className="text-red-600 hover:underline"
           onClick={handleDeleteClick}

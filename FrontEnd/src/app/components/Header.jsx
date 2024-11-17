@@ -13,7 +13,7 @@ const Header = (props) => {
                 </div>
                 <div className={style.header_actions}>
                     {props.SearchBar && <props.SearchBar />}
-                    {props.AddButton && <props.AddButton route ={`${props.addButtonRoute}`} />}
+                    {props.AddButton && <props.AddButton route ={`${props.addButtonRoute}`} text={`${props.text}`} />}
                 </div>
             </div>
             <hr className={style.divider} />

@@ -46,6 +46,10 @@ const Patient = db.define('patient', {
     type: DataTypes.DATEONLY,
     allowNull: false,
   },
+  birthDate:{
+    type: DataTypes.DATEONLY,
+    allowNull: true ,
+  }
 }, {
   timestamps: true,
 });

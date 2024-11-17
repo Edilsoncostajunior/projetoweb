@@ -13,7 +13,7 @@ const Consulta = db.define('consulta', {
     type: DataTypes.STRING(5000),
   },
   dataConsulta: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   }
 }, {

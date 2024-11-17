@@ -8,11 +8,11 @@ export default function AddPatientForm() {
     name: "",
     phone: "",
     birthDate: "",
-    parity: 0,
-    age: "",
-    lastMenstrualDate: "",
-    email: "",
-    observations: ""
+    paridade: 0,
+    idadeGestacional: "",
+    dataUltimaMenstruacao: "",
+    cpf:"",
+    email: ""
   });
 
   const handleInputChange = (e) => {
@@ -23,9 +23,12 @@ export default function AddPatientForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch("http://localhost:5000/patient/patients", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          'Authorization': `Bearer ${JSON.parse(token)}`, // Passando o token no cabeçalho
+         },
         body: JSON.stringify(formData),
       });
 
@@ -35,11 +38,11 @@ export default function AddPatientForm() {
           name: "",
           phone: "",
           birthDate: "",
-          parity: 0,
-          age: "",
-          lastMenstrualDate: "",
-          email: "",
-          observations: ""
+          paridade: 0,
+          idadeGestacional: "",
+          dataUltimaMenstruacao: "",
+          cpf: "",
+          email: ""
         });
       } else {
         alert("Erro ao adicionar paciente.");
@@ -95,10 +98,10 @@ export default function AddPatientForm() {
             <label className="block text-sm font-medium">Paridade</label>
             <input
               type="number"
-              name="parity"
+              name="paridade"
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Paridade"
-              value={formData.parity}
+              value={formData.paridade}
               onChange={handleInputChange}
             />
           </div>
@@ -106,10 +109,10 @@ export default function AddPatientForm() {
             <label className="block text-sm font-medium">Idade Gestacional</label>
             <input
               type="text"
-              name="age"
+              name="idadeGestacional"
               className="mt-1 p-2 w-full border rounded-md"
               placeholder="Idade Gestacional"
-              value={formData.age}
+              value={formData.idadeGestacional}
               onChange={handleInputChange}
             />
           </div>
@@ -117,9 +120,19 @@ export default function AddPatientForm() {
             <label className="block text-sm font-medium">Data da Última Menstruação</label>
             <input
               type="date"
-              name="lastMenstrualDate"
+              name="dataUltimaMenstruacao"
               className="mt-1 p-2 w-full border rounded-md"
-              value={formData.lastMenstrualDate}
+              value={formData.dataUltimaMenstruacao}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium">Cpf</label>
+            <input
+              type="text"
+              name="cpf"
+              className="mt-1 p-2 w-full border rounded-md"
+              value={formData.cpf}
               onChange={handleInputChange}
             />
           </div>
@@ -135,17 +148,7 @@ export default function AddPatientForm() {
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium">Observações</label>
-          <textarea
-            name="observations"
-            className="mt-1 p-2 w-full border rounded-md"
-            rows="4"
-            placeholder="Observações"
-            value={formData.observations}
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
+
         <div className="flex justify-end space-x-4">
           <button
             type="button"

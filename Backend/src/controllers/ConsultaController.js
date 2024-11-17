@@ -65,7 +65,9 @@ class ConsultaController {
         return res.status(404).json({ error: 'Paciente não encontrado ou não associado à enfermeira' });
       }
 
-      const consultas = await Consulta.findAll({ where: { patientId: id } });
+      const consultas = await Consulta.findAll({ where: { patientId: id },
+        include: { model: Patient, attributes: ['name']}
+         });
       res.status(200).json(consultas);
     } catch (error) {
       res.status(500).json({ error: 'Erro ao buscar consultas: ' + error.message });

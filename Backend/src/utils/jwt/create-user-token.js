@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 
 // Substitua 'YOUR_SECRET_KEY' pela chave secreta que você deseja usar
 const SECRET_KEY = 'usersecret';
-const EXPIRATION_TIME = '1h'; // O token expira em 1 hora
+const EXPIRATION_TIME = '10h'; // O token expira em 1 hora
 
 const createUserToken = (nurse, req, res) => {
     // Cria o token com os dados da enfermeira
